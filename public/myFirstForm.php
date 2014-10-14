@@ -52,6 +52,69 @@ var_dump($_POST);
 				<p>
 					<button type="submit">Send your email!</button>
 				</p>
+				<p>
+					<label for="save">Would you like to save a copy to your 'sent' folder?</label>
+						<input type="checkbox" id="save" name="save" value="yes" checked>
+						<label for="save">Check to save this to your 'sent' folder</label>
+					</label>
+				</p>
+			</form>
+		<h2>Multiple Choice Test</h2>
+			<form>
+				<p>
+					Where is the magicite 'Ragnarok' found?
+				</p>
+				<label>
+					<input type="radio" id="q1a" name="q1" value="Man in Tzen">
+					Man in Tzen
+				</label>
+				<label>
+					<input type="radio" id="q1b" name="q1" value="Magitek Factory">
+					Magitek Factory
+				</label>
+				<label>
+					<input type="radio" id="q1c" name="q1" value="Man in Narshe">
+					Man in Narshe
+				</label>
+				<label>
+					<input type="radio" id="q1d" name="q1" value="Phoenix Cave">
+					Phoenix Cave
+				</label>
+				<p>
+					Which esper teaches 'Firaga,' 'Blizzaga,' and 'Thundaga?'
+				</p>
+				<label>
+					<input type="radio" id="q2a" name="q2" value="Maduin">
+					Maduin
+				</label>
+				<label>
+					<input type="radio" id="q2b" name="q2" value="Valigarmanda">
+					Valigarmanda
+				</label>
+				<label>
+					<input type="radio" id="q2c" name="q2" value="Lakshmi">
+					Lakshmi
+				</label>
+				<label>
+					<input type="radio" id="q2d" name="q2" value="Phoenix">
+					Phoenix
+				</label>
+				<p>
+					<label for="question">Which of the following magicite are found at the Magitek Factory?</label>
+					<input type="checkbox" id="question" name="question" value="Maduin">
+					<label for="question">Maduin</label>
+					<input type="checkbox" id="question" name="question" value="Bismark">
+					<label for="question">Bismark</label>
+					<input type="checkbox" id="question" name="question" value="Seraphim">
+					<label for="question">Seraphim</label>
+					<input type="checkbox" id="question" name="question" value="Ifrit">
+					<label for="question">Ifrit</label>
+					<input type="checkbox" id="question" name="question" value="Siren">
+					<label for="question">Siren</label>
+				</p>
+					<p>
+						<button type="submit">Submit Answers</button>
+					</p>
 			</form>
 	</body>
 </html>
