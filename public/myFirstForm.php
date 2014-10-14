@@ -13,14 +13,18 @@ var_dump($_POST);
 		<form method="GET" action="/myFirstForm.php">
 			<p>
 				<label for="username">Username</label>
-				<input id="username" name="username" type="text">
+				<input id="username" name="username" type="text" placeholder="Username">
 			</p>
 			<p>
-				<label for"password">Password</label>
-				<input id="password" name="password" type="password">
+				<label for="password">Password</label>
+				<input id="password" name="password" type="password" placeholder="Password">
 			</p>
 			<p>
-				<input type="submit">
+				<label for="phone">Phone Number</label>
+				<input type="text" id="phone number" name="phone number" type="text" placeholder="123-456-7890">
+			</p>
+			<p>
+				<button type="submit">Welcome to your doom!</button>
 			</p>
 		</form>
 	</body>
