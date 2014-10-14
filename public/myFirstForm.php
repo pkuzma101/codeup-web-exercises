@@ -112,9 +112,27 @@ var_dump($_POST);
 					<input type="checkbox" id="question" name="question" value="Siren">
 					<label for="question">Siren</label>
 				</p>
+				<p>
+					<label for="equip">Which characters can equip the 'Illumina?'</label>
+					<select id="equip" name="equip[]" multiple>
+						<option value="terra">Terra</option>
+						<option value="locke">Locke</option>
+						<option value="cyan">Cyan</option>
+						<option value="celes">Celes</option>
+						<option value="setzer">Setzer</option>
+					</select>
+				</p>
 					<p>
 						<button type="submit">Submit Answers</button>
 					</p>
+			</form>
+		<h2>Select Testing</h2>
+			<form>
+ 				<label for="eaten">Have you eaten today?</label>
+ 				<select id="eaten" name="eaten">
+ 					<option value="1">Yes</option>
+ 					<option selected value="0">No</option>
+ 				</select>
 			</form>
 	</body>
 </html>
