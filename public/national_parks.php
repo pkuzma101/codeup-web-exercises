@@ -19,8 +19,11 @@ $parks = $dbc->query("SELECT * FROM national_parks LIMIT 4 OFFSET $offsetNumber"
 
 // $parksSecondPage = $dbc->query('SELECT * FROM national_parks LIMIT 4 OFFSET 4')->fetchAll(PDO::FETCH_ASSOC);
 
-$rowCount = $dbc->query('SELECT count(*) FROM national_parks')->fetchColumn();
+$numberOfParks = $dbc->query('SELECT count(*) FROM national_parks')->fetchColumn();
 
+// if($offsetNumber > $numberOfParks) {
+
+// }
 
 ?>
 
@@ -49,8 +52,12 @@ $rowCount = $dbc->query('SELECT count(*) FROM national_parks')->fetchColumn();
 			</tr>
 		</table>
 		<div>
-			<a href="?page=<?= $pageNumber - 1 ?>" class='btn btn-info'> < Previous </a>
-			<a href="?page=<?= $pageNumber + 1 ?>" class='btn btn-danger'>Next ></a>
+			<? if($pageNumber > 1): ?>
+			<a href="?page=<?= $pageNumber - 1 ?>" class='btn btn-info' id="previous"> < Previous </a>
+			<? endif ?>
+			<? if($pageNumber <= 2): ?>
+			<a href="?page=<?= $pageNumber + 1 ?>" class='btn btn-danger' id="next">Next ></a>
+			<? endif ?>
 		</div>
 	</body>
 </html>
