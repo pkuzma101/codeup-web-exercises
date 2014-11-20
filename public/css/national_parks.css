@@ -1,0 +1,29 @@
+body {
+	background-image: url("../img/greatbasin.jpg");
+}
+
+h1 {
+	font-family: 'Smokum', cursive;
+	text-align: center;
+	font-size: 60px;
+}
+
+table {
+	font-family: 'Nunito', sans-serif;
+	color: black;
+}
+
+h2 {
+	font-family: 'Raleway', sans-serif;
+	color: black;
+}
+
+form {
+	font-family: 'Nunito', sans-serif;
+	color: #C40615;
+	margin-left: 25px;
+}
+
+button {
+	margin-left: 20px;
+}
