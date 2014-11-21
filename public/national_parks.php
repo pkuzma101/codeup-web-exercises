@@ -15,7 +15,7 @@ if(isset($_GET['page'])) {
 	
 $offsetNumber = ($pageNumber - 1) * 4;
 
-$stmt = $dbc->prepare("SELECT * FROM national_parks LIMIT 4 OFFSET $offsetNumber");
+$stmt = $dbc->prepare("SELECT name, location, date_established, area_in_acres, description FROM national_parks LIMIT 4 OFFSET :offsetNumber");
 $stmt->bindValue(':offsetNumber', $offsetNumber, PDO::PARAM_INT);
 $stmt->execute();
 
@@ -27,15 +27,16 @@ if($_POST) {
 	if(empty($_POST['name']) || empty($_POST['location']) || empty($_POST['date_established']) || empty($_POST['area_in_acres']) || empty($_POST['description'])) {
 		 echo "<div class='alert alert-info' role='alert'> Fill in all fields </div>";
 	} else {
-		if(isset($_POST['name']) && strlen($_POST['description'] < 125)) {
-			$query = $dbc->prepare('INSERT INTO national_parks(name, location, date_established, area_in_acres, description) VALUES(:name, :location, :date_established, :area_in_acres, :description)');
-				$query->bindValue(':name', $_POST['name'], PDO:: PARAM_STR);
-				$query->bindValue(':location', $_POST['location'], PDO:: PARAM_STR);
-				$query->bindValue(':date_established', $_POST['date_established'], PDO:: PARAM_STR);
-				$query->bindValue(':area_in_acres', $_POST['area_in_acres'], PDO:: PARAM_STR);
-				$query->bindValue(':description', $_POST['description'], PDO:: PARAM_STR);
+		if(strlen($_POST['description'] < 125)) {
+			$query = $dbc->prepare('INSERT INTO national_parks(name, location, date_established, area_in_acres, description) 
+									VALUES(:name, :location, :date_established, :area_in_acres, :description)');
+			$query->bindValue(':name', $_POST['name'], PDO:: PARAM_STR);
+			$query->bindValue(':location', $_POST['location'], PDO:: PARAM_STR);
+			$query->bindValue(':date_established', $_POST['date_established'], PDO:: PARAM_STR);
+			$query->bindValue(':area_in_acres', $_POST['area_in_acres'], PDO:: PARAM_STR);
+			$query->bindValue(':description', $_POST['description'], PDO:: PARAM_STR);
 
-				$query->execute();
+			$query->execute();
 		}
 	}
 }
@@ -54,7 +55,6 @@ if($_POST) {
 		<h1>National Parks Bonanza</h1>
 		<table class="table table">
 			<tr>
-				<th>ID</th>
 				<th>Name</th>
 				<th>Location</th>
 				<th>Date Established</th>
@@ -69,16 +69,16 @@ if($_POST) {
 			<? endforeach ?>
 			</tr>
 		</table>
-		<div>
+		<div id="pagination">
 			<? if($pageNumber > 1): ?>
-			<a href="?page=<?= $pageNumber - 1 ?>" class='btn btn-info' id="previous"> < Previous </a>
+				<a href="?page=<?= $pageNumber - 1 ?>" class='btn btn-info' id="previous"> &lt; Previous </a>
 			<? endif ?>
 			<? if(round($numberOfParks / 4) > $pageNumber): ?>
-			<a href="?page=<?= $pageNumber + 1 ?>" class='btn btn-danger' id="next">Next ></a>
+				<a href="?page=<?= $pageNumber + 1 ?>" class='btn btn-danger' id="next">Next &gt;</a>
 			<? endif ?>
 		</div>
 		<!-- Form that creates a new park -->
-		<form method="POST" classaction="/national_parks.php" class='form-horizontal' role='form'>
+		<form method="POST" action="/national_parks.php" class='form-horizontal' role='form'>
 			<h2>Insert a New Park</h2>
 			<p class='input-group'>
 				<label for="name">Name:</label>
