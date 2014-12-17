@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+}
+
+.navbar {
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding-left: 40px;
+  box-shadow: none;
+}
+.navbar h1 {
+  font-size: 2em;
+  color: white;
+}
+.navbar a {
+  display: block;
+  float: right;
+  line-height: 60px;
+  padding-right: 40px;
+  color: black;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+.navbar .small-logo-container {
+  padding-top: 60px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.content {
+  padding-top: 60px;
+  padding-left: 40px;
+}
+.content .big-logo {
+  font-size: 7em;
+}
+.content .filler {
+  color: #777;
+  width: 30%;
+  padding-top: 1em;
+}
+.content .filler p {
+  margin-top: 1em;
+}
