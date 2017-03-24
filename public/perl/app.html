@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Perl Application Page</title>
+    <style>
+      div.row_div button {
+        float: left;
+      }
+
+      div.row_div button.form_btn {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="main_page">
+      <div class="row_div">
+        <button type="button" id="new_btn" name="new_btn">New</button>
+        <button type="button" id="add_btn" name="add_btn" class="form_btn">Add</button>
+        <button type="button" id="cancel_btn" name="cancel_btn" class="form_btn" >Cancel</button>
+      </div>
+      <br>
+      <form id="appt_form" style="display: none;">
+        <label>Date</label>
+        <input type="date" id="date" name="date" />
+        <br>
+        <label>Time</label>
+        <input type="time" id="time" name="time" />
+        <br>
+        <label>Desc</label>
+        <input type="text" id="desc" name="desc" />
+      </form>
+      <br>
+      <div id="search_box">
+        <input type="text" id="search_input" name="search_input" />
+        <button type="submit" id="search_btn" name="search_btn" value="Search">Search</button>
+      </div>
+      <table id="results_table"></table>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('button#new_btn').click(function() {
+          var self = $(this);
+
+          // hide and show form buttons
+          self.css("display", "none");
+          $('button.form_btn').css("display", "block");
+          $('form#appt_form').css("display", "block");
+        });
+
+        $('button#cancel_btn').click(function() {
+          $('button#new_btn').css("display", "block");
+          $('button.form_btn').css("display", "none");
+          $('form#appt_form').css("display", "none");
+        });
+
+        // insert new appt into db
+        $('button#add_btn').click(function() {
+          // combine date and time into one datetime
+          var date = $('#date').val();
+          var time = $('#time').val();
+          var datetime = new Date(date + ' ' + time);
+
+          var month = datetime.getMonth()+1;
+          var day = datetime.getDate();
+          var year = datetime.getFullYear();
+
+          var hour = datetime.getHours();
+          if (hour < 10) {
+              hour = "0"+hour;
+          }
+
+          var min = datetime.getMinutes();
+          if (min < 10) {
+              min = "0"+min;
+          }
+
+          var sec = datetime.getSeconds();
+          if (sec < 10) {
+              sec = "0"+sec;
+          }
+
+          var date_time_string = month+'/'+day+'/'+year+' '+hour+':'+min+':'+sec;
+          
+          $.ajax({
+            url: 'insert.pl',
+            type: 'post',
+            data: {
+              'date': date_time_string,
+              'description': $('#desc').val(),
+            },
+            // dataType: 'json',
+            success: function(data) {
+              // console.log(data);
+            },
+            error: function(request, status, error) {
+              console.log(status);
+              console.log(error);
+              console.log(request.responseText);
+            }
+          }); 
+        });
+      });
+    </script>
+  </body>
+</html>

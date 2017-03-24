@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table</title>
+    <style>
+      div#green_box {
+        /*height: 300px;*/
+        width: 80%;
+        background: green;
+      }
+
+      div#yellow_box {
+        /*height: 300px;*/
+        width: 80%;
+        background: yellow;
+      }
+
+      table {
+        width: 80%;
+        text-align: center;
+        border: 1px solid black;
+        margin: 0 auto;
+      }
+      table td {
+        line-height: 40px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <article>
+        <button type="button" id="green" name="green">Make Table in Green</button>
+        <button type="button" id="yellow" name="yellow">Make Table in Yellow</button>
+      </article>
+      <div id="green_box"></div>
+      <div id="yellow_box"></div>
+    </section>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var table_data = [ { first_name : 'Rose',
+                           last_name  : 'Tyler',
+                           home       : 'Earth' },
+                         { first_name : 'Zoe',
+                           last_name  : 'Heriot',
+                           home       : 'Space Station W3'},
+                         { first_name : 'Jo',
+                           last_name  : 'Grant',
+                           home       : 'Earth'},
+                         { first_name : 'Leela',
+                           last_name  : null,
+                           home       : 'Unspecified'},
+                         { first_name : 'Romana',
+                           last_name  : null,
+                           home       : 'Gallifrey'},
+                         { first_name : 'Clara',
+                           last_name  : 'Oswald',
+                           home       : 'Earth'},
+                         { first_name : 'Adric',
+                           last_name  : null,
+                           home       : 'Alzarius'},
+                         { first_name : 'Susan',
+                           last_name  : 'Foreman',
+                           home       : 'Gallifrey'} ];
+
+      function create_table(array, div) {
+        $(div).append('<table id="data_table"><tr><th>First Name</th><th>Last Name</th><th>Home</th></tr></table>');
+          $.each(array, function(index, value) {
+            $('table#data_table').append('<tr><td>'+value['first_name']+'</td><td>'+value['last_name']+'</td><td>'+value['home']+'</td></tr>');
+          });
+      }
+
+      var green_div = $('div#green_box');
+      var yellow_div = $('div#yellow_box');
+      $('button#green').click(function() {
+        create_table(table_data, green_div);
+      });
+
+      $('button#yellow').click(function() {
+        create_table(table_data, yellow_div);
+      });
+
+      
+      // $('div#green_box').append('<table id="data_table"><tr><th>First Name</th><th>Last Name</th><th>Home</th></tr></table>');
+      // $.each(table_data, function(index, value) {
+      //   $('table#data_table').append('<tr><td>'+value['first_name']+'</td><td>'+value['last_name']+'</td><td>'+value['home']+'</td></tr>');
+      // });
+    });
+  </script>
+</html>
